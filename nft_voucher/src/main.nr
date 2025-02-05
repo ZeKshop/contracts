@@ -63,10 +63,6 @@ pub contract NFTVoucher {
     use dep::compressed_string::FieldCompressedString;
     use std::meta::derive;
 
-    //
-    // TODO(#8467): Rename this to Transfer - calling this NFTTransfer to avoid export conflict with the Transfer event
-    //
-    // in the Token contract.
     #[derive(Serialize)]
     #[event]
     struct NFTTransfer {
@@ -77,7 +73,6 @@ pub contract NFTVoucher {
 
     #[storage]
     struct Storage<Context> {
-        //
         // The symbol of the voucher
         symbol: PublicImmutable<FieldCompressedString, Context>,
         // The name of the voucher
@@ -93,9 +88,7 @@ pub contract NFTVoucher {
         // A map from token ID to the public owner of the voucher.
         public_owners: Map<Field, PublicMutable<AztecAddress, Context>, Context>,
     }
-    // docs:end:storage_struct
 
-    // docs:start:constructor
     #[public]
     #[initializer]
     fn constructor(admin: AztecAddress, name: str<31>, symbol: str<31>) {
@@ -105,25 +98,19 @@ pub contract NFTVoucher {
         storage.name.initialize(FieldCompressedString::from_string(name));
         storage.symbol.initialize(FieldCompressedString::from_string(symbol));
     }
-    // docs:end:constructor
 
-    // docs:start:set_admin
     #[public]
     fn set_admin(new_admin: AztecAddress) {
         assert(storage.admin.read().eq(context.msg_sender()), "caller is not an admin");
         storage.admin.write(new_admin);
     }
-    // docs:end:set_admin
 
-    // docs:start:set_minter
     #[public]
     fn set_minter(minter: AztecAddress, approve: bool) {
         assert(storage.admin.read().eq(context.msg_sender()), "caller is not an admin");
         storage.minters.at(minter).write(approve);
     }
-    // docs:end:set_minter
 
-    // docs:start:mint
     #[public]
     fn mint(to: AztecAddress, id: Field) {
         assert(id != 0, "zero token ID not supported");
@@ -131,10 +118,8 @@ pub contract NFTVoucher {
         assert(storage.nft_exists.at(id).read() == false, "token already exists");
 
         storage.nft_exists.at(id).write(true);
-
         storage.public_owners.at(id).write(to);
     }
-    // docs:end:mint
 
     #[public]
     #[view]
@@ -160,25 +145,21 @@ pub contract NFTVoucher {
         storage.symbol.read()
     }
 
-    // docs:start:admin
     #[public]
     #[view]
     fn get_admin() -> Field {
         storage.admin.read().to_field()
     }
-    // docs:end:admin
 
-    // docs:start:is_minter
     #[public]
     #[view]
     fn is_minter(minter: AztecAddress) -> bool {
         storage.minters.at(minter).read()
     }
-    // docs:end:is_minter
 
-    // docs:start:transfer_in_public
     #[public]
     fn transfer_in_public(from: AztecAddress, to: AztecAddress, id: Field, nonce: Field) {
+        assert(!to.is_zero(), "invalid address to transfer the voucher to");
         if (!from.eq(context.msg_sender())) {
             assert_current_call_valid_authwit_public(&mut context, from);
         } else {
@@ -190,10 +171,8 @@ pub contract NFTVoucher {
 
         public_owners_storage.write(to);
     }
-    // docs:end:transfer_in_public
 
-    // Transfers token with `id` from public balance of message sender to a private balance of `to`.
-    // docs:start:transfer_to_private
+    // Transfers voucher with `id` from public balance of `msg_sender` to a private balance of `to`.
     #[private]
     fn transfer_to_private(to: AztecAddress, id: Field) {
         let from = context.msg_sender();
@@ -209,7 +188,6 @@ pub contract NFTVoucher {
             &mut context,
         );
     }
-    // docs:end:transfer_to_private
 
     /// Prepares an increase of private balance of `to` (partial note). The increase needs to be finalized by calling
     /// `finalize_transfer_to_private. Returns a hiding point slot.
