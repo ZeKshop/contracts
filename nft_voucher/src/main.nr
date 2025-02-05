@@ -1,12 +1,44 @@
-// docs:start:imports
 mod types;
 
 use dep::aztec::macros::aztec;
 
+//
+//....................................................................................................................................................................................................................................//
+//................................................................hhhh...........................................................................................................hhhh.................................................//
+//..ZZZZZZZZZZZZZZ...............KKKKK.......KKKKK................hhhh...........................................................................................................hhhh.................................................//
+//..ZZZZZZZZZZZZZZ...............KKKKK......KKKKKK................hhhh...........................................................................................................hhhh.................................................//
+//..ZZZZZZZZZZZZZZ...............KKKKK.....KKKKKK.................hhhh...........................................................................................................hhhh.................................................//
+//..ZZZZZZZZZZZZZZ...............KKKKK....KKKKKK..................hhhh...........................................................................................................hhhh.................................................//
+//..........ZZZZZ.....eeeeee.....KKKKK...KKKKKK.......ssssss......hhhh.hhhhh........oooooo......pppp..ppppp..........vvvv......vvvv....ooooooo.....uuuu.....uuuu......ccccc......hhhh.hhhhh........eeeee......rrrr.rrr....ssssss......//
+//.........ZZZZZ.....eeeeeeeee...KKKKK..KKKKKK......ssssssssss....hhhhhhhhhhh.....oooooooooo....pppppppppppp.........vvvvv....vvvvv...ooooooooo....uuuu.....uuuu....ccccccccc....hhhhhhhhhhh.....eeeeeeeee....rrrrrrrr..ssssssssss....//
+//........ZZZZZ.....eeeeeeeeeee..KKKKK.KKKKKK.......sssssssssss...hhhhhhhhhhhh...oooooooooooo...ppppppppppppp........vvvvv....vvvvv..ooooooooooo...uuuu.....uuuu...ccccccccccc...hhhhhhhhhhhh...eeeeeeeeeee...rrrrrrrr..sssssssssss...//
+//.......ZZZZZZ....eeeeee.eeeee..KKKKKKKKKKK.......sssss..sssss...hhhhhhhhhhhh...oooooo.oooooo..pppppp.pppppp........vvvvv....vvvv..oooooo.oooooo..uuuu.....uuuu..cccccc.cccccc..hhhhhhhhhhhh...eeeee.eeeee...rrrrrrrr.sssss..sssss...//
+//......ZZZZZZ.....eeeee...eeee..KKKKKKKKKK........sssss...ssss...hhhhh...hhhh..ooooo....ooooo..ppppp...ppppp.........vvvv...vvvvv..ooooo...ooooo..uuuu.....uuuu..ccccc...ccccc..hhhhh...hhhh..eeeee...eeeee..rrrrr....sssss...ssss...//
+//......ZZZZZ......eeeeeeeeeeeee.KKKKKKKKKKK.......ssssssss.......hhhh....hhhh..ooooo....ooooo..ppppp....pppp.........vvvvv..vvvvv.ooooo.....oooo..uuuu.....uuuu..ccccc...ccc....hhhh....hhhh..eeeeeeeeeeeee..rrrrr....ssssssss.......//
+//.....ZZZZZ.......eeeeeeeeeeeee.KKKKKKKKKKKK.......ssssssssss....hhhh....hhhh..ooooo.....oooo..pppp.....pppp..........vvvv..vvvv..ooooo.....oooo..uuuu.....uuuu..cccc...........hhhh....hhhh..eeeeeeeeeeeee..rrrr......ssssssssss....//
+//....ZZZZZ........eeeeeeeeeeeee.KKKKKK.KKKKKK......sssssssssss...hhhh....hhhh..ooooo.....oooo..pppp.....pppp..........vvvv.vvvvv..ooooo.....ooooo.uuuu.....uuuu..cccc...........hhhh....hhhh..eeeeeeeeeeeee..rrrr......sssssssssss...//
+//...ZZZZZZ........eeeeeeeeeeeee.KKKKK...KKKKK........sssssssss...hhhh....hhhh..ooooo.....oooo..pppp.....pppp..........vvvvvvvvvv..ooooo.....oooo..uuuuu...uuuuu..cccc...........hhhh....hhhh..eeeeeeeeeeeee..rrrr........sssssssss...//
+//..ZZZZZZ.........eeeee.........KKKKK...KKKKKK...........ssssss..hhhh....hhhh..ooooo....ooooo..ppppp....pppp...........vvvvvvvv...ooooo.....oooo..uuuuu...uuuuu..ccccc...ccccc..hhhh....hhhh..eeeee..........rrrr............ssssss..//
+//..ZZZZZ..........eeeee...eeeee.KKKKK....KKKKKK...ssss....sssss..hhhh....hhhh..ooooo....ooooo..ppppp...ppppp...........vvvvvvvv....ooooo...ooooo..uuuuu...uuuuu..ccccc...ccccc..hhhh....hhhh..eeeee...eeeee..rrrr.....ssss....sssss..//
+//.ZZZZZZZZZZZZZZZ.eeeeeeeeeeee..KKKKK.....KKKKKK..ssssssssssss...hhhh....hhhh...oooooooooooo...ppppppppppppp...........vvvvvvv.....ooooooooooooo..uuuuuuuuuuuuu..cccccccccccc...hhhh....hhhh...eeeeeeeeeeee..rrrr.....ssssssssssss...//
+//.ZZZZZZZZZZZZZZZ..eeeeeeeeeee..KKKKK......KKKKKK.ssssssssssss...hhhh....hhhh...oooooooooooo...pppppppppppp.............vvvvvv......ooooooooooo....uuuuuuuuuuuu...ccccccccccc...hhhh....hhhh...eeeeeeeeeee...rrrr.....ssssssssssss...//
+//.ZZZZZZZZZZZZZZZ...eeeeeeeee...KKKKK.......KKKKK..ssssssssss....hhhh....hhhh.....ooooooooo....pppppppppppp.............vvvvvv.......ooooooooo.....uuuuuuu.uuuu....ccccccccc....hhhh....hhhh....eeeeeeeee....rrrr......ssssssssss....//
+//.....................eeeee..........................ssssss.........................oooo.......pppp..pppp..............................ooooo.........uuuu............ccccc........................eeeee..................ssssss......//
+//..............................................................................................pppp..................................................................................................................................//
+//..............................................................................................pppp..................................................................................................................................//
+//..............................................................................................pppp..................................................................................................................................//
+//..............................................................................................pppp..................................................................................................................................//
+//..............................................................................................pppp..................................................................................................................................//
+//....................................................................................................................................................................................................................................//
+//
+//
+//
+//
 // Minimal NFT implementation with `AuthWit` support that allows minting in public-only and transfers in both public
+//
 // and private.
 #[aztec]
-pub contract NFT {
+pub contract NFTVoucher {
     use crate::types::voucher_note::VoucherNote;
     use dep::authwit::auth::{
         assert_current_call_valid_authwit, assert_current_call_valid_authwit_public,
@@ -31,9 +63,9 @@ pub contract NFT {
     use dep::compressed_string::FieldCompressedString;
     use std::meta::derive;
 
-    // docs:end:imports
-
+    //
     // TODO(#8467): Rename this to Transfer - calling this NFTTransfer to avoid export conflict with the Transfer event
+    //
     // in the Token contract.
     #[derive(Serialize)]
     #[event]
@@ -43,12 +75,12 @@ pub contract NFT {
         id: Field,
     }
 
-    // docs:start:storage_struct
     #[storage]
     struct Storage<Context> {
-        // The symbol of the NFT
+        //
+        // The symbol of the voucher
         symbol: PublicImmutable<FieldCompressedString, Context>,
-        // The name of the NFT
+        // The name of the voucher
         name: PublicImmutable<FieldCompressedString, Context>,
         // The admin of the contract
         admin: PublicMutable<AztecAddress, Context>,
@@ -56,9 +88,9 @@ pub contract NFT {
         minters: Map<AztecAddress, PublicMutable<bool, Context>, Context>,
         // Contains the NFTs owned by each address in private.
         private_nfts: Map<AztecAddress, PrivateSet<VoucherNote, Context>, Context>,
-        // A map from token ID to a boolean indicating if the NFT exists.
+        // A map from token ID to a boolean indicating if the voucher exists.
         nft_exists: Map<Field, PublicMutable<bool, Context>, Context>,
-        // A map from token ID to the public owner of the NFT.
+        // A map from token ID to the public owner of the voucher.
         public_owners: Map<Field, PublicMutable<AztecAddress, Context>, Context>,
     }
     // docs:end:storage_struct
@@ -166,7 +198,7 @@ pub contract NFT {
     fn transfer_to_private(to: AztecAddress, id: Field) {
         let from = context.msg_sender();
 
-        let nft = NFT::at(context.this_address());
+        let nft = NFTVoucher::at(context.this_address());
 
         // We prepare the private balance increase.
         let hiding_point_slot = _prepare_private_balance_increase(to, &mut context, storage);
@@ -229,7 +261,7 @@ pub contract NFT {
         // We don't need to perform a check that the value overwritten by `_store_point_in_transient_storage_unsafe`
         // is zero because the slot is the x-coordinate of the hiding point and hence we could only overwrite
         // the value in the slot with the same value. This makes usage of the `unsafe` method safe.
-        NFT::at(context.this_address())
+        NFTVoucher::at(context.this_address())
             ._store_payload_in_transient_storage_unsafe(
                 hiding_point_slot,
                 note_setup_payload.hiding_point,
@@ -258,7 +290,7 @@ pub contract NFT {
         context.storage_write(slot + aztec::protocol_types::point::POINT_LENGTH as Field, setup_log);
     }
     // docs:end:store_payload_in_transient_storage_unsafe
-    /// Finalizes a transfer of NFT with `id` from public balance of `from` to a private balance of `to`.
+    /// Finalizes a transfer of NFTVoucher with `id` from public balance of `from` to a private balance of `to`.
     /// The transfer must be prepared by calling `prepare_private_balance_increase` first and the resulting
     /// `hiding_point_slot` must be passed as an argument to this function.
     // docs:start:finalize_transfer_to_private
@@ -290,9 +322,9 @@ pub contract NFT {
         storage: Storage<&mut PublicContext>,
     ) {
         let public_owners_storage = storage.public_owners.at(id);
-        assert(public_owners_storage.read().eq(from), "invalid NFT owner");
+        assert(public_owners_storage.read().eq(from), "invalid NFTVoucher owner");
 
-        // Set the public NFT owner to zero
+        // Set the public NFTVoucher owner to zero
         public_owners_storage.write(AztecAddress::zero());
 
         // Finalize the partial note with the `id`
@@ -330,7 +362,7 @@ pub contract NFT {
         let notes = nfts.at(from).pop_notes(NoteGetterOptions::new()
             .select(VoucherNote::properties().id, Comparator.EQ, id)
             .set_limit(1));
-        assert(notes.len() == 1, "NFT not found when transferring");
+        assert(notes.len() == 1, "NFTVoucher not found when transferring");
 
         let mut new_note = VoucherNote::new(id, to);
 
@@ -350,9 +382,9 @@ pub contract NFT {
         let notes = storage.private_nfts.at(from).pop_notes(NoteGetterOptions::new()
             .select(VoucherNote::properties().id, Comparator.EQ, id)
             .set_limit(1));
-        assert(notes.len() == 1, "NFT not found when transferring to public");
+        assert(notes.len() == 1, "NFTVoucher not found when transferring to public");
 
-        NFT::at(context.this_address())._finish_transfer_to_public(to, id).enqueue(
+        NFTVoucher::at(context.this_address())._finish_transfer_to_public(to, id).enqueue(
             &mut context,
         );
     }
